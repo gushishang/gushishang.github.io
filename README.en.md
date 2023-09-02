@@ -1,4 +1,4 @@
-Translation into English: ## Physical Reality Rich Text Creation Tool
+## Physical Reality Rich Text Creation Tool
 
 ### Introduction
 
