@@ -25,6 +25,16 @@
         </script>
         <script src="js/console.js">
         </script>
+        <noscript>
+            <style>
+                .noscript-message { display: block; width: 100%; background-color: #f8d7da;
+                color: #721c24; padding: 10px; text-align: center; font-size: 14px; font-weight:
+                bold; }
+            </style>
+            <div class="noscript-message">
+                请启用JavaScript以正常浏览本网站。
+            </div>
+        </noscript>
     </head>
     
     <body>
@@ -57,7 +67,7 @@
                         <button id="copyButton" class="btn copy-button">
                             复制
                         </button>
-                        <button id="clear" class="btn copy-button" >
+                        <button id="clear" class="btn">
                             清空
                         </button>
                         <br>
@@ -69,7 +79,6 @@
         </div>
         <!--主要逻辑 开始-->
         <script>
-        
             function Click() {
                 $("#outputDisplay").text("");
                 var inputData = $("#textInput").val();
@@ -91,18 +100,18 @@
                 });
                 $("#outputDisplay").html("<pre>" + unityText + "</pre>");
             }
-            $(document).ready(function() {
-                $("#display").click(function() {
-                    Click();
-                });
-                $("#copyButton").click(function() {
-                    Click();copy();
-                });
-                $("#clear").click(function() {
-                    $("#textInput").empty();
-                    $("#outputDisplay").empty();
-                });
-
+        </script>
+        <script>
+            $("#display").click(function() {
+                Click();
+            });
+            $("#copyButton").click(function() {
+                Click();
+                copy();
+            });
+            $("#clear").click(function() {
+                $("#textInput").val("");
+                $("#outputDisplay").empty();
             });
         </script>
     </body>
