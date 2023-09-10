@@ -19,7 +19,6 @@ var _hmt = _hmt || [];
 /**
  * 动态调整页面高度以适应窗口大小
  */
-function adjustPageHeight() {
    var originalHeight = window.innerHeight;
    window.addEventListener('resize', function() {
       var currentHeight = window.innerHeight;
@@ -29,7 +28,7 @@ function adjustPageHeight() {
          document.body.style.height = 'auto';
       }
    });
-}
+
 
 /**
  * 检查输入内容是否为空
