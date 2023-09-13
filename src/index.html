@@ -3,7 +3,7 @@
     <head>
         <!--废话 开始-->
         <title>
-            物实创作工具
+            物实创作工具2.0
         </title>
         <meta charset="UTF-8">
         <meta name="robots" content="index,follow">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="box3">
                     <h4 class="h4" align="center">
-                        unity富文本创作工具
+                        unity富文本创作工具.
                     </h4>
                     <textarea id="textInput" class="area">e.g：我喜欢用:支付宝:</textarea>
                     <div align="center">
@@ -70,6 +70,9 @@
                         <button id="clear" class="btn">
                             清空
                         </button>
+                        <button id="setting" class="btn">
+                            设置
+                        </button>
                         <br>
                     </div>
                     <div id="outputDisplay" class="area">
@@ -79,25 +82,30 @@
         </div>
         <!--主要逻辑 开始-->
         <script>
+       
+            
+           </script>
+        <script>
             function Click() {
+            var cookie = document.cookie;
+            var decodedString = decodeURIComponent(cookie);
+            const regex = /settings={(.+?)}/;
+const settingsStr = regex.exec(decodedString)[1];
+
+// 解析为JSON数组
+const settings = JSON.parse(`{${settingsStr}}`);
+
+
+            // 将Cookie字符串解析为对象
+            
                 $("#outputDisplay").text("");
                 var inputData = $("#textInput").val();
                 if (inputData === '') {
                     swal("内容不能为空", "", "error");
                 }
                 var markdownText = $("#textInput").val();
-                var unityText = display(markdownText, {
-                    app: [true, false],
-                    //[是否执行,执行是否只返回字符而不加颜色和大小]
-                    process: false,
-                    //开源指北格式化
-                    special: true,
-                    //李维嘉版本格式介绍
-                    url: true,
-                    //物实作品超链接特殊功能转换，例如<实验 最新>
-                    project: [true, '']
-                    //部分作品替换为超链接[是否执行,标志]
-                });
+                console.log(settings);
+                var unityText = display(markdownText, settings);
                 $("#outputDisplay").html("<pre>" + unityText + "</pre>");
             }
         </script>
@@ -113,7 +121,11 @@
                 $("#textInput").val("");
                 $("#outputDisplay").empty();
             });
+            $("#setting").click(function() {
+                window.location.href = './setting.html';
+            });
+            
         </script>
-    </body>
+            </body>
 
 </html>
