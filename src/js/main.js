@@ -435,6 +435,15 @@ function markdownToUnity(markdown) {
 
     });
 
+    markdown = markdown.replace(/```(.*?)```/gs, (match, code) => {
+
+        code = code.trim()
+            .replace(/^(.*)$/gm, "$1");
+
+        return `<color=#AAAAAA>${code}</color>`;
+
+    });
+
     const replacements = [
 
         [/\<font size=(.*?)\>(.*?)<\/font\>/g, "<size=$1>$2</size>"],
@@ -463,14 +472,6 @@ function markdownToUnity(markdown) {
 
     }
 
-    markdown = markdown.replace(/```(.*?)```/gs, (match, code) => {
-
-        code = code.trim()
-            .replace(/^(.*)$/gm, "$1");
-
-        return `<color=#AAAAAA>${code}</color>`;
-
-    });
 
     markdown = markdown.replace(/\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
 
