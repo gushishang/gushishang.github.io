@@ -1,131 +1,141 @@
 <html>
-    
-    <head>
-        <!--废话 开始-->
-        <title>
-            物实创作工具0.1.6
-        </title>
-        <meta charset="UTF-8">
-        <meta name="robots" content="index,follow">
-        <meta name="author" content="goose">
-        <meta name="keywords" content="物理实验室,物理实验室创作助手,物实,Physics Lab,markdown转为unity,unity富文本,markdown,物理实验课app,创作工具">
-        <meta name="description" content="物理实验室创作工具，在线创作富文本，markdown转换为unity，markdown转换为物理实验室富文本，同时也是物理实验室指南">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <!-- 引入依赖内容 开始 -->
-        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js">
-        </script>
-        <script src="./js/public.js">
-        </script>
-        <script src="./js/main.js">
-        </script>
-        <link rel="stylesheet" type="text/css" href="./css/main.css">
-        <script src="https://lib.baomitu.com/sweetalert/2.1.2/sweetalert.min.js">
-        </script>
-        <script src="js/console.js">
-        </script>
-        <noscript>
-            <style>
-                .noscript-message { display: block; width: 100%; background-color: #f8d7da;
-                color: #721c24; padding: 10px; text-align: center; font-size: 14px; font-weight:
-                bold; }
-            </style>
-            <div class="noscript-message">
-                请启用JavaScript以正常浏览本网站。
-            </div>
-        </noscript>
-    </head>
-    
-    <body>
-        <div class="j">
-            <div class="container">
-                <div class="box">
-                    <div class="box2">
-                        <!--按钮提示 开始-->
-                        <div class="inner-box red" onclick="window.location.href = 'https://txc.qq.com/embed/phone/438362/'">
-                            反馈
-                        </div>
-                        <div class="inner-box yellow" onclick="window.location.href = './stopword.html'">
-                            违禁词查询
-                        </div>
-                        <div class="inner-box blue" onclick="window.location.href = 'https://gitee.com/shang-yicheng/richtext'">
-                            参与开发
-                        </div>
+
+<head>
+    <!--废话 开始-->
+    <title>
+        物实创作工具0.1.6
+    </title>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="goose">
+    <meta name="keywords" content="物理实验室,物理实验室创作助手,物实,Physics Lab,markdown转为unity,unity富文本,markdown,物理实验课app,创作工具">
+    <meta name="description" content="物理实验室创作工具，在线创作富文本，markdown转换为unity，markdown转换为物理实验室富文本，同时也是物理实验室指南">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 引入依赖内容 开始 -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js">
+    </script>
+    <script src="./js/public.js">
+    </script>
+    <script src="./js/main.js">
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <script src="https://lib.baomitu.com/sweetalert/2.1.2/sweetalert.min.js">
+    </script>
+    <script src="js/console.js">
+    </script>
+    <noscript>
+        <style>
+            .noscript-message {
+                display: block;
+                width: 100%;
+                background-color: #f8d7da;
+                color: #721c24;
+                padding: 10px;
+                text-align: center;
+                font-size: 14px;
+                font-weight:
+                    bold;
+            }
+        </style>
+        <div class="noscript-message">
+            请启用JavaScript以正常浏览本网站。
+        </div>
+    </noscript>
+</head>
+
+<body>
+    <div class="j">
+        <div class="container">
+            <div class="box">
+                <div class="box2">
+                    <!--按钮提示 开始-->
+                    <div class="inner-box red"
+                        onclick="window.location.href = 'https://txc.qq.com/embed/phone/438362/'">
+                        反馈
+                    </div>
+                    <div class="inner-box yellow" onclick="window.location.href = './stopword.html'">
+                        违禁词查询
+                    </div>
+                    <div class="inner-box blue"
+                        onclick="window.location.href = 'https://gitee.com/shang-yicheng/richtext'">
+                        参与开发
                     </div>
                 </div>
-                <div class="box3">
-                    <h4 class="h4" align="center">
-                        unity富文本创作工具.
-                    </h4>
-                    <textarea id="textInput" class="area">e.g：我喜欢用:支付宝:</textarea>
-                    <div align="center">
-                        <!--操作按钮 开始-->
-                        <button id="display" class="btn">
-                            一键转换
-                        </button>
-                        <button id="copyButton" class="btn copy-button">
-                            复制
-                        </button>
-                        <button id="clear" class="btn">
-                            清空
-                        </button>
-                        <button id="setting" class="btn">
-                            设置
-                        </button>
-                        <br>
-                    </div>
-                    <div id="outputDisplay" class="area">
-                    </div>
+            </div>
+            <div class="box3">
+                <h4 class="h4" align="center">
+                    unity富文本创作工具.
+                </h4>
+                <textarea id="textInput" class="area">e.g：我喜欢用:支付宝:</textarea>
+                <div align="center">
+                    <!--操作按钮 开始-->
+                    <button id="display" class="btn">
+                        一键转换
+                    </button>
+                    <button id="copyButton" class="btn copy-button">
+                        复制
+                    </button>
+                    <button id="clear" class="btn">
+                        清空
+                    </button>
+                    <button id="setting" class="btn">
+                        设置
+                    </button>
+                    <br>
+                </div>
+                <div id="outputDisplay" class="area">
                 </div>
             </div>
         </div>
-        <!--主要逻辑 开始-->
-        <script>
-       
-            
-           </script>
-        <script>
-            function Click() {
+    </div>
+    <!--主要逻辑 开始-->
+    <script>
+
+
+    </script>
+    <script>
+        function Click() {
             var cookie = document.cookie;
             var decodedString = decodeURIComponent(cookie);
             const regex = /settings={(.+?)}/;
-const settingsStr = regex.exec(decodedString)[1];
+            const settingsStr = regex.exec(decodedString)[1];
 
-// 解析为JSON数组
-const settings = JSON.parse(`{${settingsStr}}`);
+            // 解析为JSON数组
+            const settings = JSON.parse(`{${settingsStr}}`);
 
 
             // 将Cookie字符串解析为对象
-            
-                $("#outputDisplay").text("");
-                var inputData = $("#textInput").val();
-                if (inputData === '') {
-                    swal("内容不能为空", "", "error");
-                }
-                var markdownText = $("#textInput").val();
-                console.log(settings);
-                var unityText = display(markdownText, settings);
-                $("#outputDisplay").html("<pre>" + unityText + "</pre>");
+
+            $("#outputDisplay").text("");
+            var inputData = $("#textInput").val();
+            if (inputData === '') {
+                swal("内容不能为空", "", "error");
             }
-        </script>
-        <script>
-            $("#display").click(function() {
-                Click();
-            });
-            $("#copyButton").click(function() {
-                Click();
-                copy();
-            });
-            $("#clear").click(function() {
-                $("#textInput").val("");
-                $("#outputDisplay").empty();
-            });
-            $("#setting").click(function() {
-                window.location.href = './new_setting.html';
-            });
-            
-        </script>
-            </body>
+            var markdownText = $("#textInput").val();
+            console.log(settings);
+            var unityText = display(markdownText, settings);
+            $("#outputDisplay").html("<pre>" + unityText + "</pre>");
+        }
+    </script>
+    <script>
+        $("#display").click(function () {
+            Click();
+        });
+        $("#copyButton").click(function () {
+            Click();
+            copy();
+        });
+        $("#clear").click(function () {
+            $("#textInput").val("");
+            $("#outputDisplay").empty();
+        });
+        $("#setting").click(function () {
+            window.location.href = './new_setting.html';
+        });
+
+    </script>
+</body>
 
 </html>
