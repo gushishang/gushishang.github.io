@@ -118,7 +118,7 @@ function replacePhysicsUrl(markdown) {
 
     var regex = /<(实验|讨论) (.*?)>/g;
 
-    return markdown.replace(regex, function(match, tag, param) {
+    return markdown.replace(regex, function (match, tag, param) {
 
         var replacedTag = tag.replace("实验", "experiment")
             .replace("讨论", "discussion");
@@ -738,7 +738,7 @@ function display(markdown, config = {
             markdown = funcObj.func(markdown, funcObj.param2); // 将参数2传递给函数
 
         }
-        
+
     }
 
     const specialChars = {

@@ -9,7 +9,7 @@
  * 初始化百度统计
  */
 var _hmt = _hmt || [];
-(function() {
+(function () {
    var hm = document.createElement("script");
    hm.src = "https://hm.baidu.com/hm.js?16da047dd1b99f98fb58d332c05d7c13";
    var s = document.getElementsByTagName("script")[0];
@@ -19,15 +19,15 @@ var _hmt = _hmt || [];
 /**
  * 动态调整页面高度以适应窗口大小
  */
-   var originalHeight = window.innerHeight;
-   window.addEventListener('resize', function() {
-      var currentHeight = window.innerHeight;
-      if (currentHeight < originalHeight) {
-         document.body.style.height = originalHeight + 'px';
-      } else {
-         document.body.style.height = 'auto';
-      }
-   });
+var originalHeight = window.innerHeight;
+window.addEventListener('resize', function () {
+   var currentHeight = window.innerHeight;
+   if (currentHeight < originalHeight) {
+      document.body.style.height = originalHeight + 'px';
+   } else {
+      document.body.style.height = 'auto';
+   }
+});
 
 
 /**
@@ -49,15 +49,15 @@ function isEmpty(id) {
 function copy() {
    var text = document.getElementById("outputDisplay").textContent;
    var clipboard = new ClipboardJS('.copy-button', {
-      text: function() {
+      text: function () {
          return text;
       }
    });
-   clipboard.on('success', function(e) {
+   clipboard.on('success', function (e) {
       swal("复制成功", "", "success");
       e.clearSelection();
    });
-   clipboard.on('error', function(e) {
+   clipboard.on('error', function (e) {
       swal("复制失败！", e.error, "error");
    });
 }

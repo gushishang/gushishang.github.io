@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-          <script src="./js/public.js"></script>
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="./js/public.js"></script>
+  <meta charset="utf-8" name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>原♂神抽卡模拟</title>
   <!--注意，本内容与物实富文本无关，纯属个人整活-->
   <style>
@@ -15,7 +17,7 @@
       font-size: 16px;
       cursor: pointer;
     }
-  
+
     .btn:hover {
       background-color: deepskyblue;
     }
@@ -24,27 +26,27 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    
+
     #result-container {
       text-align: center;
     }
-    
+
     .green {
       color: green;
     }
-    
+
     .red {
       color: red;
     }
-    
+
     .orange {
       color: orange;
     }
-    
+
     h2 {
       text-align: center;
     }
-    
+
     #stats-container {
       background-color: #f0f0f0;
       padding: 20px;
@@ -54,40 +56,41 @@
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 15px;
-      display:none;
+      display: none;
     }
-    
+
     .progress-bar {
-    width: 100%;
-    height: 8px;
-    border-radius: 10px;
-    background-color: #f4f4f4;
-    margin-top: 20px;
-}
- 
-.progress {
-    width: 0%;
-    height: 100%;
-    border-radius: 10px;
-    background-color: #4376F1;
-}
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      background-color: #f4f4f4;
+      margin-top: 20px;
+    }
+
+    .progress {
+      width: 0%;
+      height: 100%;
+      border-radius: 10px;
+      background-color: #4376F1;
+    }
   </style>
 </head>
 
-<body>	
+<body>
   <h2>以下为抽卡结果</h2>
   <div id="input-container">
     <label for="numInput">输入抽卡次数：</label>
-    <input type="text" value=90 id="numInput" style="width:50px;padding: 4px; border: 1px solid #ccc; border-radius: 4px; outline: none; font-size: 16px; transition: border-color 0.3s ease-in-out;" />
+    <input type="text" value=90 id="numInput"
+      style="width:50px;padding: 4px; border: 1px solid #ccc; border-radius: 4px; outline: none; font-size: 16px; transition: border-color 0.3s ease-in-out;" />
     <div class="error-message" id="errorMessage" style="color: red; font-size: 14px; margin-top: 5px;"></div>
     <button onclick="chou()" id="myButton">开始抽卡</button>
     <span id="counter"></span>
   </div>
   <div id="stats-container"></div>
   <div class="progress-bar">
-       <div class="progress"></div>
+    <div class="progress"></div>
   </div>
-  <hr/>
+  <hr />
   <div id="result-container"></div>
 
   <script>
@@ -96,29 +99,29 @@
     function getRandom() {
       return Math.random();
     }
-    
+
     function p(num_chou) {
       var p;
-      
+
       if (num_chou <= 73) {
         p = 0.006;
       } else if (num_chou === 90) {
-        return 1; 
+        return 1;
       } else {
         p = 0.006 + (num_chou - 73) * 0.006;
         p = Math.min(p, 1.0);
       }
-      
+
       return p;
     }
-    
+
     function getRandomResult(p) {
       return (getRandom() < p) ? 1 : 0;
     }
-    
+
     function wai(num_wai) {
       if (num_wai === 0) {
-        if (getRandomResult(0.5) === 1){
+        if (getRandomResult(0.5) === 1) {
           return 1; // 歪了
         } else {
           return 0; // 没歪
@@ -127,15 +130,15 @@
         return 3; // 没歪，保底
       }
     }
-  
+
     function timeout(numChou) {
-        if (numChou <= 500){
-          return numChou < 10 ? 10 : 500/numChou;
-        } else {
-          return 0.01;
-        }
+      if (numChou <= 500) {
+        return numChou < 10 ? 10 : 500 / numChou;
+      } else {
+        return 0.01;
+      }
     }
-    
+
     function chou() {
       var numChou = numInput.value;
       var resultContainer = document.getElementById('result-container');
@@ -143,82 +146,83 @@
       var progressBar = document.querySelector('.progress');
       const btn = document.querySelector('#myButton');
       const counter = document.querySelector('#counter');
-      var progress = 0; 
+      var progress = 0;
       var choushu = 0;
       var num_wai = 0;
       var numOutput = 0;
       var numWai = 0;
-      
-      
+
+
       statsContainer.innerHTML = resultContainer.innerHTML = "";
       progressBar.style.width = 0;
-      console.log(progressBar.style.width )
+      console.log(progressBar.style.width)
       statsContainer.style.display = "none";
-      
-      
-      if (!/^[0-9]+$/.test(numChou)|| numChou <= 0 || numChou >= 2048) {
+
+
+      if (!/^[0-9]+$/.test(numChou) || numChou <= 0 || numChou >= 2048) {
         errorMessage.textContent = "请输入一个正整数并且小于2048！";
         return;
       }
-       
-        btn.disabled = true;
-        setTimeout(function() {
-        let i = 0;
-        let timer = setInterval(function() {
-        choushu++;
-        counter.innerHTML = `${i+1}/${numChou}`;
-        progress += 100/numChou;
-        if (progress < 100) {
-        progressBar.style.width = progress+ '%';
-        }
-        if (getRandomResult(p(choushu)) === 1) {
-          if (choushu === 90) {
-            resultContainer.innerHTML += '<b><a href="./img/1692114464567.jpg" target="\_blank" style = "text-decoration :none;">[ 触发保底机制 ] </b>';
 
-          } else {
-            resultContainer.innerHTML += "<b>[ 当前已经垫了" + choushu + "抽 ] </b>";
+      btn.disabled = true;
+      setTimeout(function () {
+        let i = 0;
+        let timer = setInterval(function () {
+          choushu++;
+          counter.innerHTML = `${i + 1}/${numChou}`;
+          progress += 100 / numChou;
+          if (progress < 100) {
+            progressBar.style.width = progress + '%';
           }
-          
-          if (wai(num_wai) === 0){
-            resultContainer.innerHTML += "<span class='green'>没歪</span>";
-          } else if (wai(num_wai) === 3) {
-            resultContainer.innerHTML += "<span class='green'>没歪</span>，但是<span class='orange'>大保底</span>";
-            num_wai = 0;
-          } else {
-            resultContainer.innerHTML += "<span class='red'>歪了</span>";
-            num_wai = 1;
+          if (getRandomResult(p(choushu)) === 1) {
+            if (choushu === 90) {
+              resultContainer.innerHTML += '<b><a href="./img/1692114464567.jpg" target="\_blank" style = "text-decoration :none;">[ 触发保底机制 ] </b>';
+
+            } else {
+              resultContainer.innerHTML += "<b>[ 当前已经垫了" + choushu + "抽 ] </b>";
+            }
+
+            if (wai(num_wai) === 0) {
+              resultContainer.innerHTML += "<span class='green'>没歪</span>";
+            } else if (wai(num_wai) === 3) {
+              resultContainer.innerHTML += "<span class='green'>没歪</span>，但是<span class='orange'>大保底</span>";
+              num_wai = 0;
+            } else {
+              resultContainer.innerHTML += "<span class='red'>歪了</span>";
+              num_wai = 1;
+            }
+            resultContainer.innerHTML += "<br/>";
+            choushu = 0;
+            numOutput++;
+            if (num_wai === 1) {
+              numWai++;
+            }
+
           }
-          resultContainer.innerHTML += "<br/>";
-          choushu = 0;
-          numOutput++;
-          if (num_wai === 1) {
-            numWai++;
+
+          i++;
+          if (i >= numChou) {
+            clearInterval(timer); // 达到循环次数后停止循环
+            statsContainer.innerHTML = `共出金${numOutput}次，其中${numOutput - numWai}次没歪。`;
+            if (numOutput - numWai > 0) {
+              statsContainer.innerHTML += `平均每个限定角色消耗${parseInt(numChou * 160 / numOutput - numWai)}原石`;
+            }
+            if (numOutput == 0) {
+              resultContainer.innerHTML = "很遗憾，您并没有抽出五星角色";
+            }
+            statsContainer.style.display = "block";
+            progressBar.style.width = "100%";
+            btn.disabled = false;
+
+
           }
-        
-        }
-      
-      i++;
-      if (i >= numChou) {
-         clearInterval(timer); // 达到循环次数后停止循环
-         statsContainer.innerHTML = `共出金${numOutput}次，其中${numOutput - numWai}次没歪。`;
-      if (numOutput - numWai > 0){
-          statsContainer.innerHTML += `平均每个限定角色消耗${parseInt(numChou * 160/ numOutput - numWai)}原石`;
-      }
-      if(numOutput == 0){
-           resultContainer.innerHTML = "很遗憾，您并没有抽出五星角色";
-      }
-      statsContainer.style.display = "block";
-      progressBar.style.width = "100%";
-      btn.disabled = false;
-      
-    
-      }
-    
-      }, timeout(3000/numChou));
-      
+
+        }, timeout(3000 / numChou));
+
       }, 300);
-      
+
     }
   </script>
 </body>
-  </html>
+
+</html>

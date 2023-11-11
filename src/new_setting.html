@@ -1,217 +1,293 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-        <title>
-            设置页面
-        </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://lib.baomitu.com/sweetalert/2.1.2/sweetalert.min.js">
-        </script>
-        
-                <script src="./js/public.js">
-        </script>
-        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-        </script>
-        <script src="js/console.js">
-        </script>
-        <style>
-        #projectFlag {
-    width: 50px; /* 设置输入框宽度 */
-    height: 15px; /* 设置输入框高度 */
-    padding: 5px; /* 设置输入框内边距 */
-    border: 1px solid #ccc; /* 设置输入框边框样式 */
-    border-radius: 5px; /* 设置输入框边框圆角 */
-    font-size: 14px; /* 设置文本字体大小 */
-}
-            #saveButton {
-    background-color: #4CAF50; /* 绿色背景 */
-    color: white;
-    padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px; 
-    transition: background-color 0.3s ease; /* 过渡效果 */
-}
 
-#saveButton:hover {
-    background-color: #45a049; /* 鼠标悬停时的背景颜色 */
-}
-            .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background-color: #1E9FE4; color: #fff; padding: 3px 20px; border-radius:
-            6px; opacity: 0.9; z-index: 9999; } .switch { position: relative; display:
-            inline-block; width: 40px; height: 20px; } .switch input { opacity: 0;
-            width: 0; height: 0; } .slider { position: absolute; cursor: pointer; top:
-            0; left: 0; right: 0; bottom: 0; background-color: #ccc; -webkit-transition:
-            .4s; transition: .4s; } .slider:before { position: absolute; content: "";
-            height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white;
-            -webkit-transition: .4s; transition: .4s; } input:checked + .slider { background-color:
-            #2196F3; } input:focus + .slider { box-shadow: 0 0 1px #2196F3; } input:checked
-            + .slider:before { -webkit-transform: translateX(20px); -ms-transform:
-            translateX(20px); transform: translateX(20px); } .slider.round { border-radius:
-            20px; } .slider.round:before { border-radius: 50%; }
-        </style>
-        <script>
-            function createToast(message, time) {
-                const toast = document.createElement('div');
-                toast.classList.add('toast');
-                toast.textContent = message;
-                // 将Toast元素添加到页面中
-                document.body.appendChild(toast);
-                // 设置自动消失
-                setTimeout(() =>{
-                    document.body.removeChild(toast);
-                },
+<head>
+    <title>
+        设置页面
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://lib.baomitu.com/sweetalert/2.1.2/sweetalert.min.js">
+    </script>
+
+    <script src="./js/public.js">
+    </script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script src="js/console.js">
+    </script>
+    <style>
+        #projectFlag {
+            width: 50px;
+            /* 设置输入框宽度 */
+            height: 15px;
+            /* 设置输入框高度 */
+            padding: 5px;
+            /* 设置输入框内边距 */
+            border: 1px solid #ccc;
+            /* 设置输入框边框样式 */
+            border-radius: 5px;
+            /* 设置输入框边框圆角 */
+            font-size: 14px;
+            /* 设置文本字体大小 */
+        }
+
+        #saveButton {
+            background-color: #4CAF50;
+            /* 绿色背景 */
+            color: white;
+            padding: 8px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            /* 过渡效果 */
+        }
+
+        #saveButton:hover {
+            background-color: #45a049;
+            /* 鼠标悬停时的背景颜色 */
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1E9FE4;
+            color: #fff;
+            padding: 3px 20px;
+            border-radius:
+                6px;
+            opacity: 0.9;
+            z-index: 9999;
+        }
+
+        .switch {
+            position: relative;
+            display:
+                inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top:
+                0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition:
+                .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color:
+                #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(20px);
+            -ms-transform:
+                translateX(20px);
+            transform: translateX(20px);
+        }
+
+        .slider.round {
+            border-radius:
+                20px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+        function createToast(message, time) {
+            const toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = message;
+            // 将Toast元素添加到页面中
+            document.body.appendChild(toast);
+            // 设置自动消失
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            },
                 time);
+        }
+
+        $(document).ready(function () {
+            var cookieSettings = document.cookie.replace(/(?:(?:^|.*;\s*)settings\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            // 如果存在cookie，则将其解析为JSON对象
+            if (cookieSettings) {
+                var previousSettings = JSON.parse(decodeURIComponent(cookieSettings));
+                // 将配置值同步到页面上
+                $("#appToggle").prop("checked", previousSettings.app[0]);
+                $("#appReturnToggle").prop("checked", previousSettings.app[1]);
+                $("#processToggle").prop("checked", previousSettings.process);
+                $("#specialToggle").prop("checked", previousSettings.special);
+                $("#urlToggle").prop("checked", previousSettings.url);
+                $("#projectToggle").prop("checked", previousSettings.project[0]);
+                $("#projectFlag").val(previousSettings.project[1]);
             }
 
-            $(document).ready(function() {
-                var cookieSettings = document.cookie.replace(/(?:(?:^|.*;\s*)settings\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-                // 如果存在cookie，则将其解析为JSON对象
-                if (cookieSettings) {
-                    var previousSettings = JSON.parse(decodeURIComponent(cookieSettings));
-                    // 将配置值同步到页面上
-                    $("#appToggle").prop("checked", previousSettings.app[0]);
-                    $("#appReturnToggle").prop("checked", previousSettings.app[1]);
-                    $("#processToggle").prop("checked", previousSettings.process);
-                    $("#specialToggle").prop("checked", previousSettings.special);
-                    $("#urlToggle").prop("checked", previousSettings.url);
-                    $("#projectToggle").prop("checked", previousSettings.project[0]);
-                    $("#projectFlag").val(previousSettings.project[1]);
-                }
-
-                $("#saveButton").click(function() {
-                    // 获取设置选项的值
-                    var appExecute = $("#appToggle").is(":checked");
-                    var appReturn = $("#appReturnToggle").is(":checked");
-                    var processFormat = $("#processToggle").is(":checked");
-                    var specialFormat = $("#specialToggle").is(":checked");
-                    var urlConversion = $("#urlToggle").is(":checked");
-                    var projectExecute = $("#projectToggle").is(":checked");
-                    var projectFlag = $("#projectFlag").val();
-                    // 创建一个对象来存储所有的设置值
-                    var settings = {
-                        app: [appExecute, appReturn],
-                        process: processFormat,
-                        special: specialFormat,
-                        url: urlConversion,
-                        project: [projectExecute, projectFlag]
-                    };
-                    // 将设置值对象转换为JSON字符串
-                    var settingsJSON = JSON.stringify(settings);
-                    // 设置Cookie的过期时间为30天
-                    var expirationDate = new Date();
-                    expirationDate.setDate(expirationDate.getDate() + 30);
-                    // 写入Cookie
-                    document.cookie = "settings=" + encodeURIComponent(settingsJSON) + "; expires=" + expirationDate.toUTCString() + "; path=/";
-                    swal({
-                        title: "配置已保存成功",
-                        text: "是否跳转到原网站",
-                        icon: "success",
-                        buttons: {
-                            cancel: true,
-                            confirm: true,
-                        },
-                    }).then((value) =>{
-                        if (value === null) {
-                            createToast('跳转已取消', 2000);
-                        } else {
-                            window.location.href = "./index.html";
-                        }
-                    });
+            $("#saveButton").click(function () {
+                // 获取设置选项的值
+                var appExecute = $("#appToggle").is(":checked");
+                var appReturn = $("#appReturnToggle").is(":checked");
+                var processFormat = $("#processToggle").is(":checked");
+                var specialFormat = $("#specialToggle").is(":checked");
+                var urlConversion = $("#urlToggle").is(":checked");
+                var projectExecute = $("#projectToggle").is(":checked");
+                var projectFlag = $("#projectFlag").val();
+                // 创建一个对象来存储所有的设置值
+                var settings = {
+                    app: [appExecute, appReturn],
+                    process: processFormat,
+                    special: specialFormat,
+                    url: urlConversion,
+                    project: [projectExecute, projectFlag]
+                };
+                // 将设置值对象转换为JSON字符串
+                var settingsJSON = JSON.stringify(settings);
+                // 设置Cookie的过期时间为30天
+                var expirationDate = new Date();
+                expirationDate.setDate(expirationDate.getDate() + 30);
+                // 写入Cookie
+                document.cookie = "settings=" + encodeURIComponent(settingsJSON) + "; expires=" + expirationDate.toUTCString() + "; path=/";
+                swal({
+                    title: "配置已保存成功",
+                    text: "是否跳转到原网站",
+                    icon: "success",
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                }).then((value) => {
+                    if (value === null) {
+                        createToast('跳转已取消', 2000);
+                    } else {
+                        window.location.href = "./index.html";
+                    }
                 });
             });
-        </script>
-    </head>
-    
-    <body>
-        <h1>
-            设置页面
-        </h1>
-        <hr/>
-        <h2>
-            App设置
-        </h2>
-        <label for="appToggle">
-            是否执行：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="appToggle" name="appToggle" checked>
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-        <label for="appReturnToggle">
-            执行是否只返回字符而不加颜色和大小：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="appReturnToggle" name="appReturnToggle">
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-         <h2>
-            Project设置
-        </h2>
-        <label for="projectToggle">
-            部分作品替换为超链接：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="projectToggle" name="projectToggle" checked>
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-        <label for="projectFlag">
-            标志：
-        </label>
-        <input type="text" id="projectFlag" name="projectFlag">
-        <br>
-        <h2>
-            Process设置
-        </h2>
-        <label for="processToggle">
-            开源指北格式化：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="processToggle" name="processToggle">
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-        <h2>
-            Special设置
-        </h2>
-        <label for="specialToggle">
-            李维嘉版本格式介绍：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="specialToggle" name="specialToggle" checked>
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-        <h2>
-            URL设置
-        </h2>
-        <label for="urlToggle">
-            物实作品超链接特殊功能转换：
-        </label>
-        <label class="switch">
-            <input type="checkbox" id="urlToggle" name="urlToggle" checked>
-            <span class="slider round">
-            </span>
-        </label>
-        <br>
-       
-        <button id="saveButton">
-            保存
-        </button>
-    </body>
+        });
+    </script>
+</head>
+
+<body>
+    <h1>
+        设置页面
+    </h1>
+    <hr />
+    <h2>
+        App设置
+    </h2>
+    <label for="appToggle">
+        是否执行：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="appToggle" name="appToggle" checked>
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+    <label for="appReturnToggle">
+        执行是否只返回字符而不加颜色和大小：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="appReturnToggle" name="appReturnToggle">
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+    <h2>
+        Project设置
+    </h2>
+    <label for="projectToggle">
+        部分作品替换为超链接：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="projectToggle" name="projectToggle" checked>
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+    <label for="projectFlag">
+        标志：
+    </label>
+    <input type="text" id="projectFlag" name="projectFlag">
+    <br>
+    <h2>
+        Process设置
+    </h2>
+    <label for="processToggle">
+        开源指北格式化：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="processToggle" name="processToggle">
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+    <h2>
+        Special设置
+    </h2>
+    <label for="specialToggle">
+        李维嘉版本格式介绍：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="specialToggle" name="specialToggle" checked>
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+    <h2>
+        URL设置
+    </h2>
+    <label for="urlToggle">
+        物实作品超链接特殊功能转换：
+    </label>
+    <label class="switch">
+        <input type="checkbox" id="urlToggle" name="urlToggle" checked>
+        <span class="slider round">
+        </span>
+    </label>
+    <br>
+
+    <button id="saveButton">
+        保存
+    </button>
+</body>
 
 </html>
