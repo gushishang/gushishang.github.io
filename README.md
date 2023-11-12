@@ -1,5 +1,7 @@
 ## 物实富文本创作工具
 
+[![State-of-the-art Shitcode](https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804)](https://github.com/trekhleb/state-of-the-art-shitcode)
+
 ### 简介
 
 这东西是我的1200粉丝福利，可以访问网站查看：[https://gushishang.github.io/src](https://gushishang.github.io/src) ，ui没做，慢慢填。逆天vh，下回老老实实用px算了。手机端页眉页脚忘记删了，电脑的字又太大，哎慢慢搞。
